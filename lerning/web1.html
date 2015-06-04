@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+    <head>
+    <title>KBITS3</title>
+    
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <link rel=stylesheet type="text/css" href="/static/css/base.css">
+    <link rel=stylesheet type="text/css" href="/static/css/custom.css">
+    
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.tools.min.js"></script>
+    <script type="text/javascript">
+<!--
+jQuery(function() {
+    var flash = jQuery('.flash');
+    flash.hide();
+    if(flash.html()) flash.slideDown();
+    jQuery('.flash', document).click(function(e) {
+        jQuery(this).fadeOut('slow');
+        e.preventDefault();
+    });
+});
+-->
+    </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <table class="layout">
+               <tr>
+                   <td colspan="2" class="header"><h1>KBITS3 Beta</h1>
+                       <h3>Lab126 SCM Builds Page</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="menubar"><ul class="menu menu-horizontal">
+                            <li class="menu-expand">
+                                <a href="/">Home</a>
+                            </li></ul></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="statusbar">/login
+                        <span class="float_right">&nbsp;
+                            <span class="auth_navbar"><a href="https://wiki.labcollab.net/confluence/display/SCM/KBITS#KBITS-KBITSProxyServers"
+                                target="_blank">Is KBITS slow?</a> |&nbsp;<a href="https://issues.labcollab.net/browse/SWTOOLS/component/12911"
+                                target="_blank">Issue Tracker</a> |&nbsp;[&nbsp; <a href="/login">Login</a> &nbsp;]</span>
+                        </span></td>
+                </tr>
+                <tr>
+                    <td class="expandable content-wrapper">
+<h2>Login</h2>
+
+<p><i>Use your CROWD account.</i></p>
+
+<br/>
+<div id="user_form">
+    <form action="" enctype="multipart/form-data" method="post">
+        <table>
+            <tr id="no_table_username__row">
+                <td class="w2p_fl">
+                    <label for="no_table_username" id="no_table_username__label">Username: </label>
+                </td>
+                <td class="w2p_fw">
+                    <input class="string" id="no_table_username" name="username" type="text" value="" />
+                </td>
+                <td class="w2p_fc">
+                </td>
+            </tr>
+            <tr id="no_table_password__row">
+                <td class="w2p_fl">
+                    <label for="no_table_password" id="no_table_password__label">Password: </label>
+                </td>
+                <td class="w2p_fw">
+                    <input class="password" id="no_table_password" name="password" type="password" value="" />
+                </td>
+                <td class="w2p_fc"></td>
+            </tr>
+            <tr id="auth_user_remember__row">
+                <td class="w2p_fl">
+                    <label>&nbsp;</label>
+                </td>
+                <td class="w2p_fw">
+                    <div>&nbsp;
+                        <input class="checkbox" id="auth_user_remember" name="remember" type="checkbox" value="on" />&nbsp;&nbsp;
+                        <label for="auth_user_remember">Remember me (for 30 days)</label>
+                    </div>
+                </td>
+                <td class="w2p_fc"></td>
+            </tr>
+            <tr id="submit_record__row">
+                <td class="w2p_fl"></td>
+                <td class="w2p_fw">
+                    <input type="submit" value="Login" />
+                </td>
+                <td class="w2p_fc"></td>
+            </tr>
+        </table>
+        <div class="hidden">
+            <input name="_formname" type="hidden" value="login" />
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    jQuery("#user_form input:visible:enabled:first").focus();
+</script>
+<a href="https://wiki.corp.lab126.com/mediawiki-1.10/index.php/KBITS/UserFAQ" target="_blank">Click here if you are having trouble logging in.</a>
+<script type="text/javascript">
+                        $('[title]').tooltip({effect: 'fade', fadeOutSpeed: 100,
+                            predelay: 400, position: "bottom right",
+                            offset: [-5, -5]}).dynamic();
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" class="footer"><span>Copyright &copy; 2012 - Amazon Technologies, Inc. All Rights Reserved.</span>
+                        <span class="float_right">KBITS3 Version: 1.3.7</span></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
