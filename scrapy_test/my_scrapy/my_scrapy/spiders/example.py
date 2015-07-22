@@ -59,7 +59,11 @@ class Dmozspider(Spider):
                 post['url_link'] = Tieba_admin_url + 'p/' + str(data_field['id'])
                 post['title'] = li.xpath('.//a[@class="j_th_tit"]/text()').extract()[0]
                 # title = li.xpath('/div[1]div/div/div/a/text()').extract()
-                post['body'] =  li.xpath('.//div[@class="threadlist_abs threadlist_abs_onlyline"]/text()').extract()[0]
+                post['body'] =  li.xpath('.//div[@class="threadlist_abs threadlist_abs_onlyline"]/text()').extract()
+                if len(post['body']) > 0:
+                    post['body'] = post['body'][0]
+                else:
+                    post['body'] = ""
                 # open("meuju", 'wb').write(post['title'])
                 post_items.append(post)
         return post_items
