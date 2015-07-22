@@ -14,6 +14,12 @@ rep_num_for_good = 100
 Tieba_admin_url = "http://tieba.baidu.com/"
 
 
+def list_n(List, n=0):
+    if len(List) > n:
+        return List[n]
+    else:
+        return None
+
 class Dmozspider(Spider):
 
     """docstring for Dmozspider"""
@@ -49,7 +55,7 @@ class Dmozspider(Spider):
         titles = ''
         for li in sel:
             post = Tieba_post_item()
-            data_field = json.loads(li.xpath('.//@data-field').extract()[0])
+            data_field = json.loads(list_n(li.xpath('.//@data-field').extract()))
             # print data_field
             post['rep_num'] = data_field['reply_num']
             if post['rep_num'] > rep_num_for_good:
@@ -57,14 +63,12 @@ class Dmozspider(Spider):
                 # title = li.xpath('.//a[contains(@class,"j_th_tit")]/text()').extract()
                 #tag a class name is j_th_tit
                 post['url_link'] = Tieba_admin_url + 'p/' + str(data_field['id'])
-                post['title'] = li.xpath('.//a[@class="j_th_tit"]/text()').extract()[0]
+                post['author'] = data_field['author_name'].encode('utf-8')
+                post['title'] = list_n(li.xpath('.//a[@class="j_th_tit"]/text()').extract())
                 # title = li.xpath('/div[1]div/div/div/a/text()').extract()
-                post['body'] =  li.xpath('.//div[@class="threadlist_abs threadlist_abs_onlyline"]/text()').extract()
-                if len(post['body']) > 0:
-                    post['body'] = post['body'][0]
-                else:
-                    post['body'] = ""
+                post['body'] =  list_n(li.xpath('.//div[@class="threadlist_abs threadlist_abs_onlyline"]/text()').extract())
                 # open("meuju", 'wb').write(post['title'])
+                post['last_time'] = list_n(li.xpath('.//span[@class="threadlist_reply_date j_reply_data"]/text()').extract()).strip()
                 post_items.append(post)
         return post_items
 
