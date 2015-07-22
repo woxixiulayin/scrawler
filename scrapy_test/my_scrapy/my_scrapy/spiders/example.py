@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import scrapy
-import sys, re
+import sys, re, json
 from BeautifulSoup import BeautifulSoup
 from scrapy.spiders import Spider
 from scrapy.selector import Selector
+from my_scrapy.items import Tieba_post_item
+
+# reload(sys)
+# sys.setdaulftencoding('utf-8')
 
 rep_num_for_good = 100
+Tieba_admin_url = "http://tieba.baidu.com/"
 
 
 class Dmozspider(Spider):
@@ -20,6 +25,8 @@ class Dmozspider(Spider):
     ]
 
     def parse(self, response):
+
+        post_items = []
         # use BeautifulSoup
         # soup = BeautifulSoup(response.body)
         # open("meuju.html", 'wb').write(soup.prettify())
@@ -41,15 +48,21 @@ class Dmozspider(Spider):
         print len(sel)
         titles = ''
         for li in sel:
-            rep_num = li.xpath('.//div[@class="threadlist_rep_num"]/text()').extract()[0]
-            if int(rep_num) > rep_num_for_good:
+            post = Tieba_post_item()
+            data_field = json.loads(li.xpath('.//@data-field').extract()[0])
+            # print data_field
+            post['rep_num'] = data_field['reply_num']
+            if post['rep_num'] > rep_num_for_good:
                 # #tag a with clss include j_th_tit
                 # title = li.xpath('.//a[contains(@class,"j_th_tit")]/text()').extract()
                 #tag a class name is j_th_tit
-                title = li.xpath('.//a[@class="j_th_tit"]/text()').extract()
+                post['url_link'] = Tieba_admin_url + 'p/' + str(data_field['id'])
+                post['title'] = li.xpath('.//a[@class="j_th_tit"]/text()').extract()[0]
                 # title = li.xpath('/div[1]div/div/div/a/text()').extract()
-                titles += '['+ str(rep_num) + ']' + title[0] + '\r'
-                open("meuju", 'wb').write(titles.encode('utf-8'))
+                post['body'] =  li.xpath('.//div[@class="threadlist_abs threadlist_abs_onlyline"]/text()').extract()[0]
+                # open("meuju", 'wb').write(post['title'])
+                post_items.append(post)
+        return post_items
 
 
 

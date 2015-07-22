@@ -19,3 +19,13 @@ class DmozItem(Item):
     title = Field()
     link = Field()
     desc = Field()
+
+class Tieba_post_item(Item):
+    url_link = Field()
+    rep_num = Field()
+    title = Field()
+    first_time = Field()
+    last_time = Field()
+    author = Field()
+    tags = Field()
+    body = Field()

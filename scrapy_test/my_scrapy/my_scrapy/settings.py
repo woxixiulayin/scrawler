@@ -14,7 +14,9 @@ BOT_NAME = 'my_scrapy'
 SPIDER_MODULES = ['my_scrapy.spiders']
 NEWSPIDER_MODULE = 'my_scrapy.spiders'
 
-
+ITEM_PIPELINES = {
+    'my_scrapy.pipelines.JsonWriterPipeline': 800,
+}
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'my_scrapy (+http://www.yourdomain.com)'
 
